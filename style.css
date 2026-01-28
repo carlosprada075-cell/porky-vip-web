@@ -228,3 +228,59 @@ body {
   background: var(--primary);
   box-shadow: 0 0 20px var(--primary);
 }
+/* =========================================
+   ESTILOS PARA MÓVILES Y TABLETS
+   ========================================= */
+
+/* Este código se activa solo en pantallas menores a 768px */
+@media (max-width: 768px) {
+  /* 1. Ajuste del Menú Hamburguesa */
+  .menu-toggle {
+    display: flex; /* Muestra las 3 rayitas */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1001;
+  }
+
+  .navbar-menu {
+    position: fixed;
+    left: -100%; /* Lo esconde fuera de la pantalla */
+    top: 70px;
+    flex-direction: column;
+    background: rgba(10, 10, 31, 0.98); /* Fondo oscuro sólido */
+    width: 100%;
+    height: 100vh;
+    transition: 0.4s ease;
+    padding-top: 50px;
+    border-top: 1px solid var(--primary);
+  }
+
+  .navbar-menu.active {
+    left: 0; /* Lo desliza hacia adentro cuando haces clic */
+  }
+
+  /* 2. Ajuste de la Tarjeta Principal (Hero) */
+  .hero-card {
+    grid-template-columns: 1fr; /* Pone el texto arriba y el video abajo */
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .hero-video iframe {
+    width: 100%; /* El video ocupa todo el ancho del celular */
+    height: auto;
+    aspect-ratio: 16/9;
+    margin-top: 20px;
+  }
+
+  /* 3. Ajuste de Títulos y Botones */
+  .hero-content h1 {
+    font-size: 1.8rem; /* Letra un poco más pequeña para que quepa */
+  }
+
+  .cta-group {
+    justify-content: center; /* Centra los botones en el celular */
+  }
+}

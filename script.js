@@ -1,25 +1,31 @@
-// Configuración de Partículas (Efecto de chispas)
+/* --- PARTE 1: CONFIGURACIÓN DE PARTÍCULAS --- */
+/* Esta parte controla los puntitos naranjas del fondo */
 particlesJS("particles-js", {
   particles: {
-    number: { value: 50 },
-    color: { value: "#f97316" },
-    shape: { type: "circle" },
-    opacity: { value: 0.5 },
-    size: { value: 3 },
-    move: {
-      enable: true,
-      speed: 2,
-      direction: "none",
-      random: true,
-      out_mode: "out",
-    },
+    number: { value: 80 }, // Cuántos puntos hay
+    color: { value: "#f97316" }, // El color naranja de tu marca
+    line_linked: { enable: true, color: "#f97316" }, // Las líneas que los unen
   },
 });
 
-// Menú Hamburguesa
-const hb = document.querySelector(".hamburger");
-const menu = document.querySelector(".navbar-menu");
+/* --- PARTE 2: EL MENÚ DESPLEGABLE (Lógica) --- */
+/* Paso A: "Atrapamos" los elementos del HTML por su ID o Clase */
+const menuBoton = document.querySelector("#mobile-menu"); // El botón de 3 rayas
+const listaEnlaces = document.querySelector(".navbar-menu"); // La lista de enlaces
 
-hb.addEventListener("click", () => {
-  menu.classList.toggle("active");
+/* Paso B: Escuchamos el "Click" */
+menuBoton.addEventListener("click", () => {
+  // Aquí le decimos: "Si la lista no tiene la clase 'active', ponla; si ya la tiene, quítala"
+  listaEnlaces.classList.toggle("active");
+
+  // Esto es para que el botón de 3 rayas pueda animarse (opcional)
+  menuBoton.classList.toggle("is-active");
+});
+
+/* Paso C: Cerrar el menú al tocar un enlace */
+/* Queremos que si el usuario toca "Productos", el menú se cierre solo */
+document.querySelectorAll(".nav-link").forEach((enlace) => {
+  enlace.addEventListener("click", () => {
+    listaEnlaces.classList.remove("active");
+  });
 });
