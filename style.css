@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth; /* Esto hace que la página baje suavemente en lugar de saltar */
+}
 :root {
   --primary: #f97316;
   --bg-dark: #0a0a1f;
@@ -118,6 +121,23 @@ body {
   margin-right: 10px;
 }
 
+/* Efecto para los botones grandes del Hero */
+.btn:hover {
+  transform: translateY(-3px); /* El botón sube un poquito, como si flotara */
+  box-shadow: 0 0 20px var(--primary); /* Crea el aura de luz naranja */
+  transition: 0.3s; /* Hace que el brillo aparezca suavemente */
+}
+
+/* Brillo verde para WhatsApp */
+.btn-green:hover {
+  box-shadow: 0 0 25px #22c55e;
+}
+
+/* Brillo azul para Telegram */
+.btn-blue:hover {
+  box-shadow: 0 0 25px #3b82f6;
+}
+
 .btn-green {
   background: #22c55e;
 }
@@ -125,9 +145,23 @@ body {
   background: #3b82f6;
 }
 
+.btn-green {
+  background-color: #22c55e; /* El color verde de WhatsApp */
+  color: white;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); /* Un brillo verde suave */
+}
+
+.btn-green:hover {
+  background-color: #16a34a; /* Un verde un poco más oscuro al pasar el mouse */
+  box-shadow: 0 0 25px #22c55e;
+  transform: translateY(-2px);
+}
+
 .hero-video iframe {
-  width: 400px;
-  height: 225px;
+  width: 100%; /* Ocupará el ancho del contenedor */
+  max-width: 400px; /* Pero nunca medirá más de 400px en computadoras */
+  height: auto;
+  aspect-ratio: 16/9; /* Mantiene la forma rectangular perfecta */
   border-radius: 10px;
 }
 
@@ -190,7 +224,7 @@ body {
 /* Footer */
 .futuristic-footer {
   background: #050510;
-  padding: 50px 20px;
+  padding: 60px 20px;
   text-align: center;
   border-top: 2px solid var(--primary);
 }
@@ -199,6 +233,9 @@ body {
   margin-bottom: 20px;
   color: var(--primary);
   font-family: "Orbitron";
+  /* Añadiremos este resplandor al texto */
+  text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+  letter-spacing: 2px; /* Separa un poquito las letras para que se vea más moderno */
 }
 
 .social-icons {
@@ -227,28 +264,42 @@ body {
   height: 5px;
   background: var(--primary);
   box-shadow: 0 0 20px var(--primary);
+  /* Vamos a añadirle una animación de "latido" muy sutil */
+  animation: brilloLinea 3s infinite alternate;
+}
+
+/* Paso a paso de la animación: */
+@keyframes brilloLinea {
+  from {
+    opacity: 0.6;
+    box-shadow: 0 0 10px var(--primary);
+  }
+  to {
+    opacity: 1;
+    box-shadow: 0 0 25px var(--primary);
+  }
 }
 /* =========================================
-   ESTILOS PARA MÓVILES Y TABLETS
+   ESTILOS PARA MÓVILES Y TABLETS (Todo esto va al final del archivo)
    ========================================= */
 
-/* Este código se activa solo en pantallas menores a 768px */
 @media (max-width: 768px) {
   /* 1. Ajuste del Menú Hamburguesa */
   .menu-toggle {
-    display: flex; /* Muestra las 3 rayitas */
+    display: flex;
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
     z-index: 1001;
   }
 
+  /* Escondemos el menú normal para que solo salga al presionar las rayas */
   .navbar-menu {
     position: fixed;
-    left: -100%; /* Lo esconde fuera de la pantalla */
+    left: -100%;
     top: 70px;
     flex-direction: column;
-    background: rgba(10, 10, 31, 0.98); /* Fondo oscuro sólido */
+    background: rgba(10, 10, 31, 0.98);
     width: 100%;
     height: 100vh;
     transition: 0.4s ease;
@@ -257,30 +308,42 @@ body {
   }
 
   .navbar-menu.active {
-    left: 0; /* Lo desliza hacia adentro cuando haces clic */
+    left: 0;
   }
 
-  /* 2. Ajuste de la Tarjeta Principal (Hero) */
+  /* 2. Ajuste del Contenedor Principal */
+  .container {
+    margin-top: 80px; /* Reduce el espacio arriba para que no se vea vacío en el celular */
+    padding: 0 15px;
+  }
+
+  /* 3. Ajuste de la Tarjeta Principal (Hero) */
   .hero-card {
-    grid-template-columns: 1fr; /* Pone el texto arriba y el video abajo */
+    flex-direction: column; /* Pone el texto arriba y el video abajo */
     text-align: center;
     padding: 20px;
-    margin-top: 20px;
+    gap: 30px; /* Espacio entre el texto y el video */
   }
 
+  /* 4. El video ahora se ajusta al ancho del celular */
   .hero-video iframe {
-    width: 100%; /* El video ocupa todo el ancho del celular */
+    width: 100%;
+    max-width: 100%;
     height: auto;
     aspect-ratio: 16/9;
-    margin-top: 20px;
   }
 
-  /* 3. Ajuste de Títulos y Botones */
+  /* 5. Ajuste de Títulos */
   .hero-content h1 {
-    font-size: 1.8rem; /* Letra un poco más pequeña para que quepa */
+    font-size: 1.8rem; /* Letra más pequeña para celulares */
+    margin-bottom: 15px;
   }
 
-  .cta-group {
-    justify-content: center; /* Centra los botones en el celular */
+  /* Centramos los botones en el móvil */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
+/* <-- Esta llave de arriba es la que cierra todo el bloque de móviles. ¡No la borres! */
