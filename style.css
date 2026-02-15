@@ -285,14 +285,24 @@ body {
 
 @media (max-width: 768px) {
   /* 1. Ajuste del Menú Hamburguesa */
+  /* Botón de rayitas */
   .menu-toggle {
-    display: flex;
+    display: flex; /* SIEMPRE visible */
     flex-direction: column;
-    cursor: pointer;
     gap: 5px;
-    z-index: 1001;
+    cursor: pointer;
+    z-index: 10000;
+    position: relative;
+    z-index: 9999;
   }
 
+  /* Las barritas */
+  .menu-toggle .bar {
+    width: 28px;
+    height: 3px;
+    background-color: #ffffff; /* blanco para que se vea */
+    border-radius: 2px;
+  }
   /* Escondemos el menú normal para que solo salga al presionar las rayas */
   .navbar-menu {
     position: fixed;
@@ -347,3 +357,320 @@ body {
   }
 }
 /* <-- Esta llave de arriba es la que cierra todo el bloque de móviles. ¡No la borres! */
+/* FORZAR que el botón SIEMPRE se vea (PC y móvil) */
+#mobile-menu {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 999999 !important;
+}
+
+/* FORZAR que las barritas se vean */
+#mobile-menu .bar {
+  width: 30px !important;
+  height: 4px !important;
+  background: #ffffff !important; /* cambia a negro si tu fondo es claro */
+  border-radius: 3px !important;
+  display: block !important;
+}
+/* 1) Barra superior (navbar) */
+/* 2) Logo clickeable */
+#logo-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ===== MENÚ DESPLEGABLE (sin "flash") ===== */
+
+/* Menú cerrado (siempre en modo cuadrito, pero oculto) */
+#nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 12px 14px;
+
+  position: absolute;
+  top: 60px;
+  left: 0;
+
+  background: #0b1220;
+  border: 1px solid rgba(255, 165, 0, 0.35);
+  border-radius: 12px;
+  z-index: 99999;
+  min-width: 180px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  /* Oculto */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+  max-width: calc(100vw - 24px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Menú abierto */
+#nav-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* =========================
+   PRECIO – ESTILO PORKY VIP
+========================= */
+
+.price-box {
+  margin: 12px 0 14px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price-main {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.price-currency {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffffcc;
+}
+
+.price-value {
+  font-size: 42px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow:
+    0 0 6px rgba(255, 165, 0, 0.6),
+    0 0 14px rgba(255, 115, 0, 0.4);
+}
+
+.price-extra {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.price-old {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: line-through;
+}
+
+.price-stock {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(0, 200, 0, 0.15);
+  border: 1px solid rgba(0, 200, 0, 0.35);
+  color: #eaffea;
+}
+/* =========================
+   PRODUCTO GRATUITO
+========================= */
+
+.free-product {
+  border: 2px dashed rgba(0, 255, 170, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 170, 0.15);
+}
+
+.free-price {
+  justify-content: center;
+  background: rgba(0, 255, 170, 0.12);
+}
+
+.free-price .price-value {
+  font-size: 36px;
+  font-weight: 900;
+  color: #00ffae;
+  text-shadow: 0 0 10px rgba(0, 255, 170, 0.8);
+}
+
+.free-product h3::after {
+  content: " 🎁";
+}
+/* =========================
+   BOTÓN TELEGRAM
+========================= */
+
+.mini-btn.telegram {
+  background: linear-gradient(135deg, #229ed9, #1c88c7);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 12px rgba(34, 158, 217, 0.6);
+}
+
+.mini-btn.telegram i {
+  font-size: 16px;
+}
+
+.mini-btn.telegram:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+/* =========================
+   CÓDIGOS COPIABLES
+========================= */
+
+.codes-box {
+  margin: 16px 0;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(0, 255, 170, 0.5);
+}
+
+.codes-box h4 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #00ffae;
+}
+
+.code-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.code-item code {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  font-size: 13px;
+  user-select: all;
+}
+
+.code-item button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #00ffae, #00c78c);
+  box-shadow: 0 0 8px rgba(0, 255, 170, 0.6);
+}
+
+.code-item button:hover {
+  filter: brightness(1.1);
+}
+.code-item button {
+  transition: all 0.25s ease;
+}
+#gratis {
+  scroll-margin-top: 90px; /* ajusta según altura del header */
+}
+/* --- Sección Gratis: que no “abra” toda la pantalla --- */
+#gratis {
+  background: transparent;
+  padding: 30px 0;
+}
+
+/* centra y limita el ancho como tus cards */
+#gratis .product-card {
+  max-width: 520px; /* ajusta a tu gusto */
+  margin: 0 auto;
+}
+
+/* TikTok: limpia márgenes/fondo */
+.card-video .tiktok-embed {
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* TikTok genera un iframe */
+.card-video iframe {
+  width: 100% !important;
+  border-radius: 14px;
+}
+
+/* Caja de precio GRATIS: alinear etiquetas a la derecha */
+.free-price .price-extra {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+/* Pastilla verde "disponibles" */
+.free-stock {
+  background: rgba(0, 200, 0, 0.15);
+  border: 1px solid rgba(0, 200, 0, 0.35);
+  color: #eaffea;
+  font-weight: 700;
+}
+/* ====== FREE PRODUCT STOCK ====== */
+
+.free-price {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.free-stock {
+  background: rgba(0, 200, 0, 0.15);
+  border: 1px solid rgba(0, 200, 0, 0.35);
+  color: #00ff9a;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Botón Telegram desactivado */
+#free-download-btn.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+/* Código FREE */
+.code-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+.code-item.used {
+  opacity: 0.5;
+}
+
+.code-item button {
+  background: #00ff9a;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
